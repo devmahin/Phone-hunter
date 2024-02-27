@@ -1,5 +1,5 @@
-let dataLoad = async () => {
-    let ref = await fetch("https://openapi.programming-hero.com/api/phones?search=iphone")
+let dataLoad = async (searchVal) => {
+    let ref = await fetch(`https://openapi.programming-hero.com/api/phones?search=${searchVal}`)
     let data = await ref.json();
     // console.log(data.data)
     let phones = data.data;
@@ -7,10 +7,22 @@ let dataLoad = async () => {
 }
 
 
-const container_phone = document.getElementById("container_phone");
 const displayPhone = (phones) => {
-    console.log(phones)
-    phones.forEach(phone => {  
+    const container_phone = document.getElementById("container_phone");
+    container_phone.innerHTML = "";
+
+
+
+    // show all card
+
+
+
+    // display only first 10 phone
+    phones = phones.slice(0,10)
+
+
+    // show display card
+    phones.forEach(phone => {
         let div = document.createElement("div");
         div.className = "card bg-base-100 shadow-xl border-2 border-gray p-3";
         div.innerHTML += `
@@ -29,9 +41,9 @@ const displayPhone = (phones) => {
 
 // search handel 
 const seatchHandel = () => {
-    const  search = document.getElementById("search");
+    const search = document.getElementById("search");
     const searchVal = search.value;
-    console.log(searchVal)
+    dataLoad(searchVal)
 }
 
 
@@ -48,5 +60,3 @@ const seatchHandel = () => {
 
 
 
-
-dataLoad()
