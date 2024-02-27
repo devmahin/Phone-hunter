@@ -8,13 +8,19 @@ let dataLoad = async (searchVal) => {
 
 
 const displayPhone = (phones) => {
+    console.log(phones.length)
     const container_phone = document.getElementById("container_phone");
     container_phone.innerHTML = "";
 
 
 
     // show all card
-
+    const show_all= document.getElementById("show_all");
+    if(phones.length > 10){
+        show_all.classList.remove("hidden")
+    }else{
+        show_all.classList.add("hidden")
+    }
 
 
     // display only first 10 phone
